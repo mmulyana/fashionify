@@ -6,9 +6,9 @@ type Props = {
 
 export default function Navbar({ hasAuthenticated }: Props) {
   return (
-    <div className='fixed top-0 left-0 z-50 bg-white h-32 w-full'>
-      <div className='absolute top-0 left-0 h-12 w-full bg-gray-900 flex items-center justify-center'>
-        <p className='text-white/75'>
+    <div className='fixed top-0 left-0 z-50 h-fit w-full'>
+      <div className='absolute top-0 left-0 h-8 w-full bg-gray-900 flex items-center justify-center'>
+        <p className='text-white/75 text-sm'>
           Sign up and{' '}
           <span className='text-white font-medium'>GET 27% OFF</span> for your
           first order.{' '}
@@ -20,20 +20,20 @@ export default function Navbar({ hasAuthenticated }: Props) {
           </Link>
         </p>
       </div>
-      <div className='container flex items-center justify-between mt-12 h-20'>
-        <Link href='/' className='text-gray-800 font-semibold text-lg'>
+      <div className='container flex items-center justify-between mt-10 h-20'>
+        <Link href='/' className='text-slate-800 font-semibold text-lg'>
           <span>Ease Market</span>
         </Link>
         <nav>
-          <ul className='flex gap-8 items-center text-gray-400'>
+          <ul className='flex gap-8 items-center text-slate-600'>
             <li>
-              <Link className='hover:text-gray-900' href='/'>New Arrival</Link>
+              <Link className='hover:text-slate-950' href='/'>New Arrival</Link>
             </li>
             <li>
-              <Link className='hover:text-gray-900' href='/'>Categories</Link>
+              <Link className='hover:text-slate-950' href='/'>Categories</Link>
             </li>
             <li>
-              <Link className='hover:text-gray-900' href='/'>Best Seller</Link>
+              <Link className='hover:text-slate-950' href='/'>Best Seller</Link>
             </li>
           </ul>
         </nav>
@@ -43,7 +43,7 @@ export default function Navbar({ hasAuthenticated }: Props) {
               <input
                 type='text'
                 placeholder='Search'
-                className='w-full px-3 bg-gray-100 border border-gray-200 rounded overflow-hidden h-10 outline-none'
+                className='w-full px-4 bg-transparent border border-gray-600 rounded overflow-hidden h-10 outline-none text-sm placeholder-slate-800 focus:ring-1 focus:ring-orange-600 hover:border-orange-600 focus:border-orange-600'
               />
               <input type='submit' hidden />
             </form>
