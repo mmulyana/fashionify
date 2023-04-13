@@ -43,7 +43,7 @@ export default function Navbar({ hasAuthenticated }: Props) {
               <input
                 type='text'
                 placeholder='Search'
-                className='w-full px-3 bg-gray-100 border border-gray-200 rounded overflow-hidden h-10 focus:ring-offset-blue-800 outline-none focus:ring-2'
+                className='w-full px-3 bg-gray-100 border border-gray-200 rounded overflow-hidden h-10 outline-none'
               />
               <input type='submit' hidden />
             </form>
