@@ -7,7 +7,6 @@ import { REQUEST_URL } from '@/api'
 
 export default function Home({ data }: { data: any[] }) {
   const { isLoading } = useLoading()
-  console.log(data)
 
   if (!isLoading) {
     return <div className='fixed top-0 left-0 w-full h-full bg-red-500'></div>

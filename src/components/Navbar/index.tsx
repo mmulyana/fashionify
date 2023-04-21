@@ -1,12 +1,27 @@
 import Link from 'next/link'
+import { useEffect, useState } from 'react'
 
 type Props = {
   hasAuthenticated: boolean
 }
 
 export default function Navbar({ hasAuthenticated }: Props) {
+  const [offset, setOffset] = useState<number>(0)
+
+  useEffect(() => {
+    const onScroll = () => setOffset(window.pageYOffset)
+    window.removeEventListener('scroll', onScroll)
+    window.addEventListener('scroll', onScroll, { passive: true })
+    return () => window.removeEventListener('scroll', onScroll)
+  }, [])
+
   return (
-    <div className='fixed top-0 left-0 z-50 h-fit w-full'>
+    <div
+      className={[
+        'fixed top-0 left-0 z-50 h-fit w-full duration-75 ease-linear',
+        offset > 0 && 'bg-white',
+      ].join(' ')}
+    >
       <div className='absolute top-0 left-0 h-8 w-full bg-gray-900 flex items-center justify-center'>
         <p className='text-white/75 text-sm'>
           Sign up and{' '}
@@ -20,20 +35,26 @@ export default function Navbar({ hasAuthenticated }: Props) {
           </Link>
         </p>
       </div>
-      <div className='container flex items-center justify-between mt-10 h-20'>
+      <div className='container flex items-center justify-between mt-8 h-20'>
         <Link href='/' className='text-slate-800 font-semibold text-lg'>
           <span>Ease Market</span>
         </Link>
         <nav>
           <ul className='flex gap-8 items-center text-slate-600'>
             <li>
-              <Link className='hover:text-slate-950' href='/'>New Arrival</Link>
+              <Link className='hover:text-slate-950' href='/'>
+                New Arrival
+              </Link>
             </li>
             <li>
-              <Link className='hover:text-slate-950' href='/'>Categories</Link>
+              <Link className='hover:text-slate-950' href='/'>
+                Categories
+              </Link>
             </li>
             <li>
-              <Link className='hover:text-slate-950' href='/'>Best Seller</Link>
+              <Link className='hover:text-slate-950' href='/'>
+                Best Seller
+              </Link>
             </li>
           </ul>
         </nav>
