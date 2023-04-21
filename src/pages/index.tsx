@@ -29,7 +29,7 @@ export default function Home({ data }: { data: any[] }) {
         </div>
       </div>
 
-      <section className='py-8 pb-20 bg-gray-100'>
+      <section className='py-8 pb-20'>
         <div className='container'>
           <h4 className='mt-4 text-orange-600 font-medium text-xl'>
             RECENT COLLECTION
@@ -40,8 +40,8 @@ export default function Home({ data }: { data: any[] }) {
                 key={id}
                 className='p-2 pb-12 border-[0.5px] border-gray-200 hover:outline-orange-600 hover:outline hover:z-10 bg-white/40 hover:bg-white hover:shadow-lg hover:shadow-slate-300'
               >
-                <div className='h-56 flex items-center justify-center rounded relative bg-white'>
-                  <img src={image} className='h-40' />
+                <div className='h-56 flex items-center justify-center rounded relative bg-gray-100'>
+                  <img src={image} className='h-40 mix-blend-multiply' />
                   <p className='absolute top-2 right-3 text-2xl font-bold text-orange-600'>
                     <span className='text-lg font-medium'>$</span>
                     {price}
