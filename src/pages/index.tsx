@@ -1,9 +1,10 @@
 import { BaseLayout } from '@/components/layout'
 import Image from 'next/image'
-import heroImg from '../assets/images/priscilla-du-preez-unsplash.jpg'
+import heroImg from '@/assets/images/hero.jpg'
 import { useLoading } from '@/hooks/useLoading'
 import axios from 'axios'
 import { REQUEST_URL } from '@/api'
+import Link from 'next/link'
 
 export default function Home({ data }: { data: any[] }) {
   const { isLoading } = useLoading()
@@ -47,7 +48,12 @@ export default function Home({ data }: { data: any[] }) {
                   </p>
                 </div>
                 <div className='mt-6'>
-                  <p className='text-sm text-gray-800 text-center'>{title}</p>
+                  <Link
+                    className='text-sm text-gray-800 text-center'
+                    href={`/detail/${id}`}
+                  >
+                    {title}
+                  </Link>
                 </div>
               </div>
             ))}
