@@ -8,7 +8,6 @@ interface Params extends ParsedUrlQuery {
 }
 
 export default function Detail({ data }: { data: any }) {
-  console.log(data)
   return (
     <BaseLayout meta={{ title: data.title, description: data.description }}>
       <div className='container'>
