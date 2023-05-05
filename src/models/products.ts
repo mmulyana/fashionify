@@ -10,3 +10,7 @@ export interface Iproduct {
     count: number
   }
 }
+
+export interface IproductPayload extends Iproduct {
+  sum: number
+}

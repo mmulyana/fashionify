@@ -41,7 +41,7 @@ export default function Navbar({ hasAuthenticated }: Props) {
         </div>
         <div className='container flex items-center justify-between mt-8 h-20'>
           <Link href='/' className='text-slate-800 font-semibold text-lg'>
-            <span>Ease Market</span>
+            <span>Fashionify</span>
           </Link>
           <nav>
             <ul className='flex gap-8 items-center text-slate-600'>

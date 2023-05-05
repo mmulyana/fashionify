@@ -1,6 +1,7 @@
 import { BaseLayout } from '@/components/layout'
 import axios from 'axios'
 import { GetServerSideProps } from 'next'
+import Image from 'next/image'
 import { ParsedUrlQuery } from 'querystring'
 
 interface Params extends ParsedUrlQuery {
@@ -12,13 +13,17 @@ export default function Detail({ data }: { data: any }) {
     <BaseLayout meta={{ title: data.title, description: data.description }}>
       <div className='container'>
         <p className='text-sm text-slate-300'>
-          Home / <span className='text-slate-800 font-semibold'>{data.category}</span>
+          Home /{' '}
+          <span className='text-slate-800 font-semibold'>{data.category}</span>
         </p>
         <div className='mt-4 grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8'>
-          <div className='h-80 bg-gray-200 flex justify-center p-8 rounded-lg'>
-            <img
+          <div className='h-96 bg-gray-200 flex justify-center px-10 py-6 rounded-lg'>
+            <Image
+              alt={data.title}
               src={data.image}
-              className='h-full object-fit mix-blend-multiply'
+              className='object-fit mix-blend-multiply'
+              width={1200}
+              height={1200}
             />
           </div>
           <div>

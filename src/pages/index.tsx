@@ -22,7 +22,7 @@ export default function Home({ data }: Props) {
 
   return (
     <BaseLayout
-      meta={{ title: 'Ease market', description: 'ecommerce fakestore api' }}
+      meta={{ title: 'fashionify', description: 'ecommerce fakestore api' }}
     >
       <div className='-mt-32'>
         <div className='h-[520px] relative from-[#F0F0F1] to-[#F3F4F6] bg-gradient-to-t'>
@@ -61,12 +61,6 @@ export default function Home({ data }: Props) {
                   >
                     {data.title}
                   </Link>
-                  <button
-                    className='px-6 py-2 rounded bg-blue-800 text-white'
-                    onClick={() => dispatch(addNewItem(data))}
-                  >
-                    Add new Cart
-                  </button>
                 </div>
               </div>
             ))}
