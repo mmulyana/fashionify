@@ -8,6 +8,11 @@ const store = configureStore({
   devTools: process.env.NODE_ENV !== 'production',
 })
 
+store.subscribe(() => {
+  const data = store.getState().cart
+  console.log(data)
+})
+
 export type RootState = ReturnType<typeof store.getState>
 export type AppDispatch = typeof store.dispatch
 export const useAppDispatch: () => AppDispatch = useDispatch

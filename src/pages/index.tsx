@@ -1,12 +1,19 @@
-import { BaseLayout } from '@/components/layout'
-import Image from 'next/image'
-import heroImg from '@/assets/images/hero.jpg'
-import { useLoading } from '@/hooks/useLoading'
-import axios from 'axios'
-import { REQUEST_URL } from '@/api'
 import Link from 'next/link'
+import axios from 'axios'
+import Image from 'next/image'
+import { BaseLayout } from '@/components/layout'
+import { useLoading } from '@/hooks/useLoading'
+import { REQUEST_URL } from '@/api'
+import { useAppDispatch } from '@/redux'
+import { Iproduct } from '@/models/products'
 
-export default function Home({ data }: { data: any[] }) {
+import heroImg from '@/assets/images/hero.jpg'
+import { addNewItem } from '@/redux/reducers/cart'
+
+type Props = { data: Iproduct[] }
+
+export default function Home({ data }: Props) {
+  const dispatch = useAppDispatch()
   const { isLoading } = useLoading()
 
   if (!isLoading) {
@@ -35,25 +42,31 @@ export default function Home({ data }: { data: any[] }) {
             RECENT COLLECTION
           </h4>
           <div className='grid grid-cols-1 md:grid-cols-3 lg:grid-cols-4 mt-6'>
-            {data.map(({ title, price, image, id }) => (
+            {data.map((data) => (
               <div
-                key={id}
+                key={data.id}
                 className='p-2 pb-12 border-[0.5px] border-gray-200 hover:outline-orange-600 hover:outline hover:z-10 bg-white/40 hover:bg-white hover:shadow-lg hover:shadow-slate-300'
               >
                 <div className='h-56 flex items-center justify-center rounded relative bg-gray-100'>
-                  <img src={image} className='h-40 mix-blend-multiply' />
+                  <img src={data.image} className='h-40 mix-blend-multiply' />
                   <p className='absolute top-2 right-3 text-2xl font-bold text-orange-600'>
                     <span className='text-lg font-medium'>$</span>
-                    {price}
+                    {data.price}
                   </p>
                 </div>
                 <div className='mt-6'>
                   <Link
                     className='text-sm text-gray-800 text-center'
-                    href={`/detail/${id}`}
+                    href={`/detail/${data.id}`}
                   >
-                    {title}
+                    {data.title}
                   </Link>
+                  <button
+                    className='px-6 py-2 rounded bg-blue-800 text-white'
+                    onClick={() => dispatch(addNewItem(data))}
+                  >
+                    Add new Cart
+                  </button>
                 </div>
               </div>
             ))}
