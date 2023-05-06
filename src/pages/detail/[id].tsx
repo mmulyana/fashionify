@@ -5,16 +5,18 @@ import { GetServerSideProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
 import { ParsedUrlQuery } from 'querystring'
-import { AiFillStar } from 'react-icons/ai'
+import { AiFillStar, AiOutlineShoppingCart } from 'react-icons/ai'
 import { useState, useEffect } from 'react'
 import Counter from '@/components/Counter'
 import { Iproduct } from '@/models/products'
+import Card from '@/components/Card'
 
 interface Params extends ParsedUrlQuery {
   slug: string
 }
 
 type Props = { data: Iproduct }
+type GetProductResponse = Iproduct
 
 const options = [
   { label: 'S', value: 's' },
@@ -26,10 +28,27 @@ const options = [
 export default function Detail({ data }: Props) {
   const [selected, setSelected] = useState<string>(options[0].value)
   const [counter, setCounter] = useState<number>(1)
+  const [recomendations, setRecomendations] = useState<Iproduct[]>([])
+
+  const getRecomendation = async (): Promise<any> => {
+    const url = `${process.env.NEXT_PUBLIC_API}/products/category/${data.category.split(' ').join('%20')}`
+    const { data: res } = await axios(url)
+    setRecomendations(res)
+  }
+
+  useEffect(() => {
+    getRecomendation()
+  }, [])
+
+  useEffect(() => {
+    return () => {
+      setCounter(1), setSelected(options[0].value)
+    }
+  }, [data])
 
   return (
     <BaseLayout meta={{ title: data.title, description: data.description }}>
-      <div className='container'>
+      <div className='container pb-12'>
         <p className='text-sm text-slate-300'>
           <Link href='/'>Home</Link>
           <span> / </span>
@@ -81,7 +100,7 @@ export default function Detail({ data }: Props) {
             </div>
           </div>
           <div>
-            <div className='rounded-lg border border-gray-300'>
+            <div className='rounded-lg border border-gray-300 overflow-hidden'>
               <div className='py-3 border-b border-gray-300 px-4'>
                 <p>Order Now</p>
               </div>
@@ -91,7 +110,7 @@ export default function Detail({ data }: Props) {
                   <Counter
                     value={counter}
                     inc={() => {
-                      if(counter < 21) {
+                      if (counter < 21) {
                         setCounter((prev) => prev + 1)
                       }
                     }}
@@ -103,7 +122,9 @@ export default function Detail({ data }: Props) {
                   />
                   <div className='flex justify-between gap-[2px] items-center'>
                     <p className='text-gray-400 text-sm'>Stock : </p>
-                    <span className='text-slate-800 text-sm font-semibold'>{21 - counter}</span>
+                    <span className='text-slate-800 text-sm font-semibold'>
+                      {21 - counter}
+                    </span>
                   </div>
                 </div>
 
@@ -117,7 +138,10 @@ export default function Detail({ data }: Props) {
                 <button className='py-3 rounded-full w-full mt-2 border bg-slate-800 hover:bg-slate-900 text-white text-sm'>
                   Buy Now
                 </button>
-                <button className='py-3 rounded-full w-full mt-3 border bg-gray-200 border-gray-200 hover:bg-slate-800 text-slate-800 hover:text-white text-sm'>
+                <button className='py-3 rounded-full w-full mt-3 border bg-gray-200 border-gray-200 hover:bg-slate-800 text-slate-800 hover:text-white text-sm flex gap-2 items-center justify-center'>
+                  <span className='text-lg font-semibold'>
+                    <AiOutlineShoppingCart />
+                  </span>
                   Add to Cart
                 </button>
               </div>
@@ -125,10 +149,18 @@ export default function Detail({ data }: Props) {
           </div>
         </div>
 
-        <div className='mt-4'>
+        <div className='mt-8'>
           <p className='text-xl font-semibold text-slate-800'>
             Similiar Product
           </p>
+          <div className='mt-6 grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-4'>
+            {recomendations
+              .filter((rec) => rec.id !== data.id)
+              .slice(0, 5)
+              .map((data) => (
+                <Card key={data.id} data={data} />
+              ))}
+          </div>
         </div>
       </div>
     </BaseLayout>
