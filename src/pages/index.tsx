@@ -24,8 +24,8 @@ export default function Home({ data }: Props) {
     <BaseLayout
       meta={{ title: 'fashionify', description: 'ecommerce fakestore api' }}
     >
-      <div className='-mt-32'>
-        <div className='h-[520px] relative from-[#F0F0F1] to-[#F3F4F6] bg-gradient-to-t'>
+      {/* <div className='px-4'>
+        <div className='h-[400px] relative rounded-2xl overflow-hidden'>
           <Image
             src={heroImg.src}
             alt='model'
@@ -34,9 +34,9 @@ export default function Home({ data }: Props) {
             width={1400}
           />
         </div>
-      </div>
+      </div> */}
 
-      <section className='py-8 pb-20'>
+      <section className=''>
         <div className='container'>
           <h4 className='mt-4 text-orange-600 font-medium text-xl'>
             RECENT COLLECTION

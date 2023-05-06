@@ -6,11 +6,15 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { ParsedUrlQuery } from 'querystring'
 import { AiFillStar } from 'react-icons/ai'
-import { useState } from 'react'
+import { useState, useEffect } from 'react'
+import Counter from '@/components/Counter'
+import { Iproduct } from '@/models/products'
 
 interface Params extends ParsedUrlQuery {
   slug: string
 }
+
+type Props = { data: Iproduct }
 
 const options = [
   { label: 'S', value: 's' },
@@ -19,8 +23,10 @@ const options = [
   { label: 'XL', value: 'xl' },
 ]
 
-export default function Detail({ data }: { data: any }) {
+export default function Detail({ data }: Props) {
   const [selected, setSelected] = useState<string>(options[0].value)
+  const [counter, setCounter] = useState<number>(1)
+
   return (
     <BaseLayout meta={{ title: data.title, description: data.description }}>
       <div className='container'>
@@ -38,7 +44,7 @@ export default function Detail({ data }: { data: any }) {
             <Image
               alt={data.title}
               src={data.image}
-              className='object-fit mix-blend-multiply'
+              className='object-fit w-60 mix-blend-multiply'
               width={1200}
               height={1200}
             />
@@ -74,20 +80,55 @@ export default function Detail({ data }: { data: any }) {
               <p className='mt-2 text-slate-600 text-sm'>{data.description}</p>
             </div>
           </div>
-          <div className='rounded-lg border border-gray-300'>
-            <div className='py-3 border-b border-gray-300 px-4'>
-              <p>Order Now</p>
-            </div>
-            <div className='px-4'>
-              <button className='py-3 rounded-full w-full mt-2 bg-slate-800 hover:bg-slate-900 text-white text-sm'>
-                Add to Cart
-              </button>
+          <div>
+            <div className='rounded-lg border border-gray-300'>
+              <div className='py-3 border-b border-gray-300 px-4'>
+                <p>Order Now</p>
+              </div>
+
+              <div className='mt-3 px-4 pb-6'>
+                <div className='flex justify-between items-center'>
+                  <Counter
+                    value={counter}
+                    inc={() => {
+                      if(counter < 21) {
+                        setCounter((prev) => prev + 1)
+                      }
+                    }}
+                    enc={() => {
+                      if (counter > 1) {
+                        setCounter((prev) => prev - 1)
+                      }
+                    }}
+                  />
+                  <div className='flex justify-between gap-[2px] items-center'>
+                    <p className='text-gray-400 text-sm'>Stock : </p>
+                    <span className='text-slate-800 text-sm font-semibold'>{21 - counter}</span>
+                  </div>
+                </div>
+
+                <div className='flex justify-between items-center mt-3'>
+                  <p className='text-sm text-gray-400'>Total</p>
+                  <p className='text-xl text-slate-800 font-semibold'>
+                    ${data.price * counter}
+                  </p>
+                </div>
+
+                <button className='py-3 rounded-full w-full mt-2 border bg-slate-800 hover:bg-slate-900 text-white text-sm'>
+                  Buy Now
+                </button>
+                <button className='py-3 rounded-full w-full mt-3 border bg-gray-200 border-gray-200 hover:bg-slate-800 text-slate-800 hover:text-white text-sm'>
+                  Add to Cart
+                </button>
+              </div>
             </div>
           </div>
         </div>
 
-        <div>
-          <p>Similiar Product</p>
+        <div className='mt-4'>
+          <p className='text-xl font-semibold text-slate-800'>
+            Similiar Product
+          </p>
         </div>
       </div>
     </BaseLayout>

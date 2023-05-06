@@ -20,7 +20,7 @@ export default function BaseLayout({ children, meta }: Props) {
         <link rel='icon' href='/favicon.ico' />
       </Head>
       <Navbar hasAuthenticated={false} />
-      <main className='mt-32'>{children}</main>
+      <main className='mt-28'>{children}</main>
     </>
   )
 }

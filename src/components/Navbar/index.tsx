@@ -21,7 +21,7 @@ export default function Navbar({ hasAuthenticated }: Props) {
   return (
     <div
       className={[
-        'fixed top-0 left-0 z-50 h-fit w-full duration-75 ease-linear',
+        'fixed top-0 left-0 z-50 h-fit w-full duration-150 ease-in',
         offset > 0 && 'bg-white',
       ].join(' ')}
     >
