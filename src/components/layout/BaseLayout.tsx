@@ -19,8 +19,8 @@ export default function BaseLayout({ children, meta }: Props) {
         <meta name='viewport' content='width=device-width, initial-scale=1' />
         <link rel='icon' href='/favicon.ico' />
       </Head>
-      <Navbar hasAuthenticated={false} />
-      <main className='mt-28'>{children}</main>
+      <Navbar hasAuthenticated />
+      <main className='mt-20 lg:mt-28'>{children}</main>
     </>
   )
 }
