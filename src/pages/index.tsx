@@ -1,7 +1,7 @@
 import Link from 'next/link'
 import axios from 'axios'
 import Image from 'next/image'
-import { BaseLayout } from '@/components/layout'
+import { BaseLayout } from '@/components/Layout'
 import { REQUEST_URL } from '@/api'
 import { Iproduct } from '@/models/products'
 
@@ -16,8 +16,6 @@ export default function Home({ data }: Props) {
     <BaseLayout
       meta={{ title: 'fashionify', description: 'ecommerce fakestore api' }}
     >
-
-
       <section>
         <div className='container'>
           <h4 className='mt-4 text-slate-800 font-medium text-xl'>
@@ -30,8 +28,6 @@ export default function Home({ data }: Props) {
           </div>
         </div>
       </section>
-
-      
     </BaseLayout>
   )
 }

@@ -2,11 +2,12 @@ import { createSlice } from '@reduxjs/toolkit'
 import { RootState } from '..'
 import { IcartItem } from '../types'
 import { nanoid } from 'nanoid'
+import { loadState } from '@/utils'
 
 const init = { data: [] }
-const local = localStorage.getItem('CART')
+const local = loadState('CART')
 
-const initialState: IcartItem = local ? JSON.parse(local) : init
+const initialState: IcartItem = local ? local : init
 
 const cartSlice = createSlice({
   name: 'cart',

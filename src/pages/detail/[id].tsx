@@ -1,5 +1,5 @@
 import Radio from '@/components/Radio'
-import { BaseLayout } from '@/components/layout'
+import { BaseLayout } from '@/components/Layout'
 import axios from 'axios'
 import { GetServerSideProps } from 'next'
 import Image from 'next/image'
