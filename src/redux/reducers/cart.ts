@@ -3,7 +3,10 @@ import { RootState } from '..'
 import { IcartItem } from '../types'
 import { nanoid } from 'nanoid'
 
-const initialState: IcartItem = { data: [] }
+const init = { data: [] }
+const local = localStorage.getItem('CART')
+
+const initialState: IcartItem = local ? JSON.parse(local) : init
 
 const cartSlice = createSlice({
   name: 'cart',
@@ -12,7 +15,7 @@ const cartSlice = createSlice({
     addNewItem: (state, action) => {
       const item = state.data?.find((item) => item.id === action.payload.id)
       if (item && item.size === action.payload.size) {
-        item.sum++
+        item.qty++
         return
       }
       const newItem = { ...action.payload, id_item: nanoid() } as never

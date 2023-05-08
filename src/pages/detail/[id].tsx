@@ -145,7 +145,7 @@ export default function Detail({ data }: Props) {
                   Buy Now
                 </button>
                 <button
-                  onClick={() => dispatch(addNewItem({ ...data, sum: counter, size: selected }))}
+                  onClick={() => dispatch(addNewItem({ ...data, qty: counter, size: selected }))}
                   className='py-3 rounded-full w-full mt-3 border bg-gray-200 border-gray-200 hover:bg-slate-800 text-slate-800 hover:text-white text-sm flex gap-2 items-center justify-center'
                 >
                   <span className='text-lg font-semibold'>

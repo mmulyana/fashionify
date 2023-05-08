@@ -10,7 +10,7 @@ const store = configureStore({
 
 store.subscribe(() => {
   const data = store.getState().cart
-  console.log(data)
+  localStorage.setItem('CART', JSON.stringify(data))
 })
 
 export type RootState = ReturnType<typeof store.getState>

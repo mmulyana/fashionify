@@ -12,6 +12,6 @@ export interface Iproduct {
 }
 
 export interface IproductCart extends Iproduct {
-  sum: number,
+  qty: number,
   size: string
 }
