@@ -11,6 +11,7 @@ export interface Iproduct {
   }
 }
 
-export interface IproductPayload extends Iproduct {
-  sum: number
+export interface IproductCart extends Iproduct {
+  sum: number,
+  size: string
 }

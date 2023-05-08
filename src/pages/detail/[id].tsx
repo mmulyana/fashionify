@@ -10,6 +10,9 @@ import { useState, useEffect } from 'react'
 import Counter from '@/components/Counter'
 import { Iproduct } from '@/models/products'
 import Card from '@/components/Card'
+import { useAppDispatch } from '@/redux'
+import { selectCart } from '@/redux/reducers/cart'
+import { addNewItem } from '@/redux/reducers/cart'
 
 interface Params extends ParsedUrlQuery {
   slug: string
@@ -29,9 +32,12 @@ export default function Detail({ data }: Props) {
   const [selected, setSelected] = useState<string>(options[0].value)
   const [counter, setCounter] = useState<number>(1)
   const [recomendations, setRecomendations] = useState<Iproduct[]>([])
+  const dispatch = useAppDispatch()
 
   const getRecomendation = async (): Promise<any> => {
-    const url = `${process.env.NEXT_PUBLIC_API}/products/category/${data.category.split(' ').join('%20')}`
+    const url = `${
+      process.env.NEXT_PUBLIC_API
+    }/products/category/${data.category.split(' ').join('%20')}`
     const { data: res } = await axios(url)
     setRecomendations(res)
   }
@@ -138,7 +144,10 @@ export default function Detail({ data }: Props) {
                 <button className='py-3 rounded-full w-full mt-2 border bg-slate-800 hover:bg-slate-900 text-white text-sm'>
                   Buy Now
                 </button>
-                <button className='py-3 rounded-full w-full mt-3 border bg-gray-200 border-gray-200 hover:bg-slate-800 text-slate-800 hover:text-white text-sm flex gap-2 items-center justify-center'>
+                <button
+                  onClick={() => dispatch(addNewItem({ ...data, sum: counter, size: selected }))}
+                  className='py-3 rounded-full w-full mt-3 border bg-gray-200 border-gray-200 hover:bg-slate-800 text-slate-800 hover:text-white text-sm flex gap-2 items-center justify-center'
+                >
                   <span className='text-lg font-semibold'>
                     <AiOutlineShoppingCart />
                   </span>

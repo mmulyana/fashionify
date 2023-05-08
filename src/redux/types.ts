@@ -1,9 +1,5 @@
-import { Iproduct } from '@/models/products'
-
-export interface IcartProduct extends Iproduct {
-  sum: number
-}
+import { IproductCart } from '@/models/products'
 
 export interface IcartItem {
-  data: IcartProduct[] | []
+  data: IproductCart[] | []
 }
