@@ -13,6 +13,7 @@ type Props = {
 export default function BaseLayout({ children, meta }: Props) {
   return (
     <>
+    
       <Head>
         <title>{meta.title}</title>
         <meta name='description' content={meta.description} />

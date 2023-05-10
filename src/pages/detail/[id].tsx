@@ -1,17 +1,20 @@
-import Radio from '@/components/Radio'
-import { BaseLayout } from '@/components/Layout'
-import axios from 'axios'
+import { ParsedUrlQuery } from 'querystring'
+import { useState, useEffect } from 'react'
 import { GetServerSideProps } from 'next'
 import Image from 'next/image'
 import Link from 'next/link'
-import { ParsedUrlQuery } from 'querystring'
-import { AiFillStar, AiOutlineShoppingCart } from 'react-icons/ai'
-import { useState, useEffect } from 'react'
-import Counter from '@/components/Counter'
-import { Iproduct } from '@/models/products'
-import Card from '@/components/Card'
+import axios from 'axios'
+
 import { useAppDispatch } from '@/redux'
 import { addNewItem } from '@/redux/reducers/cart'
+
+import Card from '@/components/Card'
+import Radio from '@/components/Radio'
+import Counter from '@/components/Counter'
+import { BaseLayout } from '@/components/Layout'
+import { AiFillStar, AiOutlineShoppingCart } from 'react-icons/ai'
+
+import { Iproduct } from '@/models/products'
 
 interface Params extends ParsedUrlQuery {
   slug: string
