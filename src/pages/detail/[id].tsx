@@ -11,7 +11,6 @@ import Counter from '@/components/Counter'
 import { Iproduct } from '@/models/products'
 import Card from '@/components/Card'
 import { useAppDispatch } from '@/redux'
-import { selectCart } from '@/redux/reducers/cart'
 import { addNewItem } from '@/redux/reducers/cart'
 
 interface Params extends ParsedUrlQuery {
