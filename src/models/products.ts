@@ -12,6 +12,7 @@ export interface Iproduct {
 }
 
 export interface IproductCart extends Iproduct {
+  id_item: string,
   qty: number,
   size: string
 }
