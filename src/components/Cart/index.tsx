@@ -3,7 +3,7 @@ import Image from 'next/image'
 import Link from 'next/link'
 import { useSelector } from 'react-redux'
 
-export default function index() {
+export default function Cart() {
   const { data } = useSelector(selectCart)
   return (
     <div className='fixed top-24 right-4 min-h-[calc(100vh-120px)] h-fit w-96 bg-white rounded-lg shadow-lg border border-gray-200 p-4'>
